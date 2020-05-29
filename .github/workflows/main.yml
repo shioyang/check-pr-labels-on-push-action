@@ -2,15 +2,15 @@ on:
   - push
 
 jobs:
-  hello_world_job:
+  check_pr_labels_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to check the PR labels contain given labels
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: shioyang/hello-world-javascript-action@v1.1.1
+    - name: Check PR labels action step
+      id: check_pr_labels
+      uses: shioyang/check-pr-labels-action@v1.0.0
       with:
-        who-to-greet: 'Mona the Octocat'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        labels: '["enhancement"]'
+    - name: See result
+      run: echo "${{ steps.check_pr_labels.outputs.result }}"
