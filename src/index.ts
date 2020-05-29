@@ -2,7 +2,7 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 
 async function run() {
-  const token = core.getInput("repo-token", { required: true });
+  const token = core.getInput("github-token", { required: true });
   const client = new github.GitHub(token);
 
   const labelNames = await getPullRequestLabelNames(client);
