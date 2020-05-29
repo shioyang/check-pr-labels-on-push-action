@@ -1,5 +1,7 @@
 on:
-  - push
+  push:
+    branches:
+      - master
 
 jobs:
   check_pr_labels_job:
