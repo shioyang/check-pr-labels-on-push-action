@@ -24,5 +24,5 @@ The result whether the PR labels contain given labels
 uses: shioyang/check-pr-labels-action@v1.0.0
 with:
   github-token: ${{ secrets.GITHUB_TOKEN }}
-  labels: "['label-1', 'label-2']"
+  labels: '["label-1", "label-2"]'
 ```
