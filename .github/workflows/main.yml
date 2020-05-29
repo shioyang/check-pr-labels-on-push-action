@@ -8,7 +8,7 @@ jobs:
     steps:
     - name: Check PR labels action step
       id: check_pr_labels
-      uses: shioyang/check-pr-labels-action@v1.0.0
+      uses: shioyang/check-pr-labels-action@v1.0.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: '["enhancement"]'
