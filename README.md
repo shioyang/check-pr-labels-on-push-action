@@ -1,25 +1,28 @@
-# Hello world javascript action
+# Get PR action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
-
-https://help.github.com/en/actions/creating-actions/creating-a-javascript-action
+This action check the PR labels contain given labels.
 
 ## Inputs
 
-### `who-to-greet`
+### `github-token`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The repository token, i.e. `secrets.GITHUB_TOKEN`
+
+### `labels`
+
+**Required** The array of label name
 
 ## Outputs
 
-### `time`
+### `result`
 
-The time we greeted you.
+The result whether the PR labels contain given labels
 
 ## Example usage
 
 ```
-uses: actions/hello-world-javascript-action@v1
+uses: shioyang/check-pr-labels-action@v1.0.0
 with:
-  who-to-greet: 'Mona the Octocat'
+  github-token: ${{ secrets.GITHUB_TOKEN }}
+  labels: "['label-1', 'label-2']"
 ```
