@@ -7600,7 +7600,7 @@ const core = __importStar(__webpack_require__(470));
 const github = __importStar(__webpack_require__(469));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const token = core.getInput("repo-token", { required: true });
+        const token = core.getInput("github-token", { required: true });
         const client = new github.GitHub(token);
         const labelNames = yield getPullRequestLabelNames(client);
         const labels = getInputLabels();
