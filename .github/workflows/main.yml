@@ -11,6 +11,6 @@ jobs:
       uses: shioyang/check-pr-labels-action@v1.0.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        labels: "['enhancement']"
+        labels: '["enhancement"]'
     - name: See result
       run: echo "${{ steps.check_pr_labels.outputs.result }}"
