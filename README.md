@@ -1,6 +1,6 @@
-# Get PR action
+# Check PR Labels on Push Action
 
-This action check the PR labels contain given labels.
+This action check if given labels have be applied to the PR when pushed.
 
 ## Inputs
 
@@ -10,19 +10,42 @@ This action check the PR labels contain given labels.
 
 ### `labels`
 
-**Required** The array of label name
+**Required** The array of label name, e.g. `'["label-1", "label-2"]'`
 
 ## Outputs
 
 ### `result`
 
-The result whether the PR labels contain given labels
+The result if given labels have be applied to the PR
 
-## Example usage
+## Example Usage
 
 ```
-uses: shioyang/check-pr-labels-action@v1.0.0
+uses: shioyang/check-pr-labels-action@v1.0.2
 with:
   github-token: ${{ secrets.GITHUB_TOKEN }}
   labels: '["label-1", "label-2"]'
+```
+
+### Example Workflow
+e.g. [.github/workflows/main.yml](https://github.com/shioyang/check-pr-labels-on-push-action/blob/master/.github/workflows/main.yml)
+```
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  check_pr_labels_job:
+    runs-on: ubuntu-latest
+    name: A job to check the PR labels contain given labels
+    steps:
+    - name: Check PR labels action step
+      id: check_pr_labels
+      uses: shioyang/check-pr-labels-action@v1.0.1
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        labels: '["enhancement"]'
+    - name: See result
+      run: echo "${{ steps.check_pr_labels.outputs.result }}"
 ```
