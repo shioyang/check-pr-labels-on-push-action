@@ -7623,7 +7623,7 @@ function getPullRequestLabelNames(client) {
     });
 }
 function getInputLabels() {
-    const raw = core.getInput("the labels", { required: true });
+    const raw = core.getInput("labels", { required: true });
     const json = JSON.parse(raw);
     return Array.isArray(json) ? json : [];
 }
