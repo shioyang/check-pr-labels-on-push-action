@@ -1,6 +1,6 @@
 # Check PR Labels on Push Action
 
-This action check if given labels have be applied to the PR when pushed.
+X This action check if given labels have be applied to the PR when pushed.
 
 ## Inputs
 
