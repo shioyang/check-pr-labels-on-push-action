@@ -10,6 +10,8 @@ inputs:
 outputs:
   result: # id of output
     description: 'The result if given labels have be applied to the PR'
+  labels: 
+    description: 'all the labels in PR'
 runs:
   using: 'node12'
   main: 'dist/index.js'
