@@ -14,7 +14,7 @@ outputs:
 #     description: 'all the labels in PR'
 runs:
   using: 'node12'
-  main: 'src/index.ts'
+  main: 'dist/index.js'
 branding:
   icon: 'check-circle'
   color: 'green'
