@@ -13,6 +13,7 @@ async function run() {
         (label) => labelNames.findIndex((value) => label === value) >= 0
     );
     core.setOutput("result", result);
+    core.setOutput("labels", labelNames);
 }
 
 async function getPullRequestLabelNames(
