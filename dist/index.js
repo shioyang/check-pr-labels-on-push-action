@@ -5372,8 +5372,8 @@ async function run() {
     const labelNames = await getPullRequestLabelNames(octokit);
     const labels = getInputLabels();
     const result = labels.every((label) => labelNames.findIndex((value) => label === value) >= 0);
-    core.setOutput("result", labelNames.shift());
-    //core.setOutput("labels", labelNames.toString());
+    core.setOutput("result", result);
+    core.setOutput("labels", labelNames.toString());
 }
 async function getPullRequestLabelNames(octokit) {
     const owner = github.context.repo.owner;
