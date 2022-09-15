@@ -5373,7 +5373,7 @@ async function run() {
     const labels = getInputLabels();
     const result = labels.every((label) => labelNames.findIndex((value) => label === value) >= 0);
     core.setOutput("result", result);
-    core.setOutput("labels", labelNames.toString());
+    core.setOutput("labels", labelNames);
 }
 async function getPullRequestLabelNames(octokit) {
     const owner = github.context.repo.owner;
