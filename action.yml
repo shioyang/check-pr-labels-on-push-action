@@ -3,7 +3,7 @@ description: 'This action check if given labels have be applied to the PR when p
 inputs:
   github-token:  # id of input
     description: 'The repository token, i.e. secrets.GITHUB_TOKEN'
-    required: true
+    default: '${{ github.token }}'
   labels:  # id of input
     description: "The array of label name, e.g. '[\"label-1\", \"label-2\"]'"
     required: true

@@ -1,10 +1,13 @@
+
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import { GitHub } from "@actions/github/lib/utils";
+import Joi from 'joi';
 
 async function run() {
-    const token = core.getInput("github-token", { required: true });
-    const octokit = github.getOctokit(token);
+    //const token = core.getInput("github-token", { required: true });
+    const config = getConfig();
+    const octokit = github.getOctokit(config['github-token']);
 
     const labelNames = await getPullRequestLabelNames(octokit);
 
@@ -39,6 +42,69 @@ function getInputLabels(): string[] {
     const json = JSON.parse(raw);
     return Array.isArray(json) ? json : [];
 }
+
+function getConfig() {
+    const input = Object.fromEntries(
+      Object.keys(configSchema.describe().keys).map(item => [
+        item,
+        core.getInput(item)
+      ])
+    );
+  
+    const {error, value} = configSchema.validate(input, {abortEarly: false});
+    if (error) {
+      throw error;
+    }
+  
+    return value;
+  }
+
+  const extendedJoi = Joi.extend(joi => {
+    return {
+      type: 'processOnly',
+      base: joi.array(),
+      coerce: {
+        from: 'string',
+        method(value) {
+          value = value.trim();
+  
+          if (value) {
+            value = value
+              .split(',')
+              .map(item => {
+                item = item.trim();
+                if (['issues', 'prs', 'discussions'].includes(item)) {
+                  item = item.slice(0, -1);
+                }
+                return item;
+              })
+              .filter(Boolean);
+          }
+  
+          return {value};
+        }
+      }
+    };
+  });
+
+  const configSchema = Joi.object({
+    'github-token': Joi.string().trim().max(100),
+  
+    'config-path': Joi.string()
+      .trim()
+      .max(200)
+      .default('.github/label-actions.yml'),
+  
+    'process-only': Joi.alternatives().try(
+      extendedJoi
+        .processOnly()
+        .items(Joi.string().valid('issue', 'pr', 'discussion'))
+        .min(1)
+        .max(3)
+        .unique(),
+      Joi.string().trim().valid('')
+    )
+  });
 
 run().catch((err) => {
     core.setFailed(err.message);
