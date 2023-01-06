@@ -11,7 +11,7 @@ outputs:
   result: # id of output
     description: 'The result if given labels have be applied to the PR'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'check-circle'
