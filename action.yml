@@ -1,11 +1,11 @@
 name: 'Check PR Labels on Push'
 description: 'This action check if given labels have be applied to the PR when pushed.'
 inputs:
-  github-token:  # id of input
+  github-token: # id of input
     description: 'The repository token, i.e. secrets.GITHUB_TOKEN'
     required: true
-  labels:  # id of input
-    description: "The array of label name, e.g. '[\"label-1\", \"label-2\"]'"
+  labels: # id of input
+    description: 'The array of label name, e.g. ''["label-1", "label-2"]'''
     required: true
 outputs:
   result: # id of output

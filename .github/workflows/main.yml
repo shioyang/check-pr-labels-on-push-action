@@ -1,18 +1,18 @@
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 
 jobs:
-    check_pr_labels_job:
-        runs-on: ubuntu-latest
-        name: A job to check the PR labels contain given labels
-        steps:
-            - name: Check PR labels action step
-              id: check_pr_labels
-              uses: shioyang/check-pr-labels-on-push-action@v1.0.6
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  labels: '["enhancement"]'
-            - name: See result
-              run: echo "${{ steps.check_pr_labels.outputs.result }}"
+  check_pr_labels_job:
+    runs-on: ubuntu-latest
+    name: A job to check the PR labels contain given labels
+    steps:
+      - name: Check PR labels action step
+        id: check_pr_labels
+        uses: shioyang/check-pr-labels-on-push-action@v1.0.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          labels: '["enhancement"]'
+      - name: See result
+        run: echo "${{ steps.check_pr_labels.outputs.result }}"
