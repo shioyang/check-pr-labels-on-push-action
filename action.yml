@@ -1,18 +1,18 @@
 name: "Check PR Labels on Push"
 description: "This action check if given labels have be applied to the PR when pushed."
 inputs:
-    github-token: # id of input
-        description: "The repository token, i.e. secrets.GITHUB_TOKEN"
-        required: true
-    labels: # id of input
-        description: 'The array of label name, e.g. ''["label-1", "label-2"]'''
-        required: true
+  github-token: # id of input
+    description: "The repository token, i.e. secrets.GITHUB_TOKEN"
+    required: true
+  labels: # id of input
+    description: 'The array of label name, e.g. ''["label-1", "label-2"]'''
+    required: true
 outputs:
-    result: # id of output
-        description: "The result if given labels have be applied to the PR"
+  result: # id of output
+    description: "The result if given labels have be applied to the PR"
 runs:
-    using: "node12"
-    main: "dist/index.js"
+  using: "node12"
+  main: "dist/index.js"
 branding:
-    icon: "check-circle"
-    color: "green"
+  icon: "check-circle"
+  color: "green"
