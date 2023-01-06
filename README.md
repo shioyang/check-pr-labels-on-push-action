@@ -46,6 +46,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: '["enhancement"]'
+      timeout-minutes: 5
     - name: See result
       run: echo "${{ steps.check_pr_labels.outputs.result }}"
 ```
