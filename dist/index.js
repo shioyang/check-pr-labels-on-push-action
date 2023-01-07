@@ -33,32 +33,38 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
 async function run() {
+    core.debug("Start");
     const token = core.getInput("github-token", { required: true });
     const octokit = github.getOctokit(token);
     const labelNames = await getPullRequestLabelNames(octokit);
     const labels = getInputLabels();
     const result = labels.every((label) => labelNames.findIndex((value) => label === value) >= 0);
     core.setOutput("result", result);
+    core.debug("End");
 }
 async function getPullRequestLabelNames(octokit) {
     const owner = github.context.repo.owner;
     const repo = github.context.repo.repo;
     const commit_sha = github.context.sha;
+    core.debug(`PR context - Owner: ${owner} Repo: ${repo} Commit_SHA: ${commit_sha}`);
     const response = await octokit.rest.repos.listPullRequestsAssociatedWithCommit({
         owner,
         repo,
         commit_sha,
     });
+    core.debug(`Retrieved commit data: ${response.data}`);
     const pr = response.data.length > 0 && response.data[0];
     return pr ? pr.labels.map((label) => label.name || "") : [];
 }
 function getInputLabels() {
     const raw = core.getInput("labels", { required: true });
+    core.debug(`Get input "labels": ${raw}`);
     const json = JSON.parse(raw);
+    core.debug(`Parsed as JSON: ${json}`);
     return Array.isArray(json) ? json : [];
 }
 run().catch((err) => {
-    core.setFailed(err.message);
+    core.setFailed(`Action failed with error: ${err.message}`);
 });
 
 

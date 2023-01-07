@@ -1,6 +1,6 @@
 {
   "name": "check-pr-labels-on-push-action",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "index.js",
   "repository": "git@github.com:shioyang/check-pr-labels-on-push-action.git",
   "author": "Tomohiro (Tomo) SHIOYA",

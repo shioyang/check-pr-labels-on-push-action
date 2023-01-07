@@ -21,7 +21,7 @@ The result if given labels have be applied to the PR
 ## Example Usage
 
 ```
-uses: shioyang/check-pr-labels-on-push-action@v1.0.7
+uses: shioyang/check-pr-labels-on-push-action@v1.0.8
 with:
   github-token: ${{ secrets.GITHUB_TOKEN }}
   labels: '["label-1", "label-2"]'
@@ -42,7 +42,7 @@ jobs:
     steps:
     - name: Check PR labels action step
       id: check_pr_labels
-      uses: shioyang/check-pr-labels-on-push-action@v1.0.7
+      uses: shioyang/check-pr-labels-on-push-action@v1.0.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: '["enhancement"]'
