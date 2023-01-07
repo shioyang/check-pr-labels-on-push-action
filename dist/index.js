@@ -37,7 +37,9 @@ async function run() {
     const token = core.getInput("github-token", { required: true });
     const octokit = github.getOctokit(token);
     const labelNames = await getPullRequestLabelNames(octokit);
+    core.debug(`PR label names: ${labelNames}`);
     const labels = getInputLabels();
+    core.debug(`Input labels: ${labels}`);
     const result = labels.every((label) => labelNames.findIndex((value) => label === value) >= 0);
     core.setOutput("result", result);
     core.debug("End");
@@ -54,6 +56,7 @@ async function getPullRequestLabelNames(octokit) {
     });
     core.debug(`Retrieved commit data: ${response.data}`);
     const pr = response.data.length > 0 && response.data[0];
+    core.debug(`Retrieved PR: ${pr}`);
     return pr ? pr.labels.map((label) => label.name || "") : [];
 }
 function getInputLabels() {
