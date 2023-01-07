@@ -1,6 +1,6 @@
 # Check PR Labels on Push Action
 
-This action check if given labels have be applied to the PR when pushed.
+This action check if given ALL labels have be applied to the PR when pushed.
 
 ## Inputs
 
@@ -16,7 +16,7 @@ This action check if given labels have be applied to the PR when pushed.
 
 ### `result`
 
-The result if given labels have be applied to the PR
+The result if given ALL labels have be applied to the PR
 
 ## Example Usage
 
