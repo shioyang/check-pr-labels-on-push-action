@@ -13,7 +13,7 @@ jobs:
         uses: shioyang/check-pr-labels-on-push-action@v1.0.8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          labels: '["enhancement", "debug"]'
+          labels: '["enhancement", "bug"]'
         timeout-minutes: 5
       - name: See result
         run: echo "${{ steps.check_pr_labels.outputs.result }}"
