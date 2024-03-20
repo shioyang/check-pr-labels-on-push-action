@@ -1,19 +1,18 @@
 {
   "name": "check-pr-labels-on-push-action",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "index.js",
   "repository": "git@github.com:shioyang/check-pr-labels-on-push-action.git",
   "author": "Tomohiro (Tomo) SHIOYA",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1"
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
   },
   "scripts": {
     "build": "tsc && ncc build lib/index.js"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.36.0",
-    "typescript": "^4.9.4"
+    "@vercel/ncc": "^0.38.1"
   }
 }
