@@ -10,9 +10,10 @@
     "@actions/github": "^6.0.0"
   },
   "scripts": {
-    "build": "tsc && ncc build lib/index.js"
+    "build": "tsc && ncc build dist/index.js"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.1"
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.4.2"
   }
 }
