@@ -1,0 +1,20 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check_pr_labels_job:
+    runs-on: ubuntu-latest
+    name: A job to check the PR labels contain given labels
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check PR labels action step
+        id: check_pr_labels
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          labels: '["test"]'
+        timeout-minutes: 5
+      - name: See result
+        run: echo "${{ steps.check_pr_labels.outputs.result }}"

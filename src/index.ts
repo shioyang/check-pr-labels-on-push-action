@@ -38,6 +38,7 @@ async function getPullRequestLabelNames(
       repo,
       commit_sha,
     });
+  core.debug(`Retrieved commit: ${response}`);
   core.debug(`Retrieved commit data: ${response.data}`);
 
   const pr = response.data.length > 0 && response.data[0];
